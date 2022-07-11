@@ -1,0 +1,82 @@
+
+This is jaya surya got 3+ it expr &  2+ relevnt to dvps engineer, 
+
+In this 2+ yrs of yrs expir
+
+vcs-git
+build-maven
+cicd-jenkins contrinztion-Dockr
+configtionmangmt- ansible
+code analysis-sonarqube (
+artufactry-jfrog/nexus
+cloud-AWS (ec2,ELB,vpc,ami,ASG,Rout53)
+websevr-tomcat,apche
+
+we have pod systms, in our pod dealing with single projct 
+DRE- devlpoing frm scratch, we as monitoring & suporting DEV,QA, peopl
+creating repo brnching,merging startgy giving acess to devlprs.
+
+smal-scal applction  deply on tomcat, 
+big-applic deploy into Eks. 
+
+ST(Systm test),SIT, UIT, pre-prod, Prod
+
+role & respblty
+* wrkd as business CE on operations team
+  configurd multipl cicd piplins & mak sur to run sommetly withut issues.
+  usd to follow agile-scrum methdology 
+   evry sprint i will get devlpmnt activits whic i usd to wrk on 
+build promtions,interl relaes, deploymnts, troubleshooting isuess, Monitoring services
+
+wrking with dvlprs to perfrm brnaching,merging, stratgies in git SC
+i was resposible to take accept PR from feture to devlop brnch if build is sucess& with no vunarablites &
+passes code quality > 80 check critia.
+to perform Deployments & troubleshoot the issues.
+launching ec2-instance based on reqirmnt using existing AMI.
+& monitoring appliction using Grafana.
+ 
+if any service goesdowntime we get crital alrts to slck
+in grafan if it get spiks, we will solve issue by restarting/
+due to miss config, invalid code
+new infra spin-up in aws,by running anisble palybook
+
+ scm -quality(sonar) --MVN((Vldt,Cmpl,Tst,Bild(jar/war),Pckg (push into .m2/) <--/--> mvn_Deply(cod to_Nexus))
+smal-scal applction  deply on tomcat(WEBAPPS),
+creating AMI-->ec2auto scaling (inec2-->TMCT-->WEbapps_foldr(APPLIction))
+in big-scale
+cret dckr cntinr out of it in build stage-->push imge to ECR -->EKS(AWS)
+
+pipeline{
+ 
+ agent any{ label 'ltecomm'}
+ triggers {
+ cron('H * * * 1-5')
+ 
+ stages{
+ stage('checkout'){
+ steps{
+ git 'https://github.com/devops-trainer/DevOpsClassCodes.git'
+ }
+ }
+ stage('compile'){
+ steps{
+ sh "mvn compile"
+ }
+ }
+ stage('test'){
+ steps{
+ sh "mvn test"
+ }
+ }
+ stage('package'){
+ steps{
+ sh "mvn package"
+ }
+ }
+ }
+ 
+}
+
+
+
+  

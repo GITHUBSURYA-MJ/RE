@@ -1,0 +1,550 @@
+The ideal candidate will have hands-on experience on the following technologies:
+- Jenkins: what it is, how it is configured, how to create jobs etc. We use Jenkins for continuous integration and the majority of the BAU tasks involve Jenkins troubleshooting, therefore some knowledge of Jenkins is required. A solid grasp of the concept of CI and practical experience 
+  of other CI tools (Teamcity, GitLabCI, ...) can be beneficial.
+- Related to the previous point is some practical experience of some build technology, and experience in troubleshooting issues. Ideally Maven and/or npm.
+- Programming/scripting skills in the automation domain:
+   we need somebody with some scripting and/or programming skills. Ideally well versed in python and groovy, as we use python for tooling and groovy for Jenkins and Nexus configuration. Java or Javascript experience in real world projects a big plus.
+- Git: a strong knowledge of how git works is required
+
+
+
+DESIRED OPTIONAL SKILLS
+- Experience in using groovy to manage Jenkins configuration and Jenkins job definitions as code with JobDSL
+- Experience in the setup, configuration and maintenance of developer support tools such as Binary Management tools (Nexus, Artifactory, Archiva, ...), Static analysis tools (Sonar, ...), Web Servers and Proxy servers (Apache, Nginx, ...)
+- Configuration Management: the candidate should be familiar with the concepts of Configuration Management and Configuration as Code; ideally with experience in at least a configuration management tool (Ideally Ansible).
+
+====================================================================================================================================================================
+
+
+
+as a build & relese engineer i can code myself as a techno functional guy ,worked as a enrolmrnt co-ordintor 
+
+i used automate the reglar activites towrd th devps
+i used to deploy on tmct srvr 
+GIT,JENKINS,GRAFAN,PRORNGRAF,MAVEN, appliction srvr(TMCT) ,LINUX,ANSIBLE,DOCKR,AWS,JFROG/NEXUS,Sonrqube,
+creating jenkins jobs& confring  and resolving conflits  
+
+CICD- flow is like whenevr devplr checkins cod into repo GIT, there piline shuld kickof here cms dvps tems funtality
+     it should automctly kicdof by jenkins job ,so there it suld do build , before doing build 
+     it sould check qulity of code by using sonrqube, if its good itshuld kickof build & its done , we get artifact store in repo(nxus/jfrog)
+     & deploy into consern trget servr(tmct) , its done we can verify deplymnt is done sucessfuly by writing a scripts using selinum(testing team)
+     
+ST(Systm test),SIT, UIT, pre-prod, Prod
+
+
+
+GIT:-
+===============================================================================
+*brnching startgy:- Main/MASTR, Develop, Feature, Release, Hotfix/Bugfix (dev,staging envirmnt,QA envirnmnt
+
+
+*git pull & fetch
+ ----------------
+ fetch will get lstset code  remote to local repo
+ pull 				   to remote copy(fetch + merge)
+*fetch vs pull
+ --------------
+git fetch is similar to pull but doesn't merge. i.e. it fetches remote updates ( refs and objects ) but your local stays the same (i.e. origin/master gets updated but master stays 
+git pull pulls down from a remote and instantly merges. git clone clones a repo.
+
+
+
+*bash vs merge 
+ -------------
+ merging code frm 1 brnch to othr brnch, without CMID
+ bash- do same merge, but consider the commitid 
+
+**Cherry_PICK (cherry-pick is typically used to introduce particular commits from one branch within a repository onto a different branch)
+               choose a commit from one branch and apply it onto another.does not alter your current Git history:instead it adds commits to it)
+        
+  git cherry-pick <previous CMID> 
+
+
+
+*revert back when wrong commit git?
+ git revert --hard CID 
+
+REVERT VS RESET
+---------------
+revrt will undo chnge done in spcfic cmid (point out head to prticulr CMID)
+Reset will get code from lclRepo--->staging-->wringArea 
+
+**git stash (temp memory, stash pop, stash apply,
+stash --->staging Area--> git stash pop stash@{0}
+staging--->Stash  ----> git stash apply stash@{1}   
+that locally stores all the most recent changes in a workspace and resets the state of the workspace to the prior commit state. 
+A user can retrieve all files put into the stash with the git stash pop and git stash apply commands.
+
+how can merge two branch?
+git merge BRNCHH_B
+
+
+REBASE is used for merging same like merge,but it prservers all CmitID  (it includes all commits)
+
+
+
+MERGE CONFLIT:- two delpr wrks on same file & commit and merge those brnach conflit occurs
+then dlvpr 1 --->undo his changs,need to push code to remote repo and pull
+           2 -->undo his changs,need to push code to remote repo and pull  
+   this should happn in sequncial mannr so we can avoid the merge conflit
+
+
+                                    
+
+code fetch(vcs) --> unit testcase(by devlpr)-->build& genrate artifact-->sonarqube-->pusing artfct to remote repstryty 
+
+SonarQube
+===========================================================================================================================
+how do evalutae Snrqbe?
+rules givn by delprs to crete qulity profil
+the re-used rules creting parent rules & applying in Qualityprofil
+it does the vunarlablites & code smells & bugs it does the job
+we have quality gate,it does Scm is redy to push to nxt envirnmt ,mostly used in delpr envirnmnt
+quality gates show us ,if it passes all conditions ,thn code will push scm to staging area  
+what u evaluta in quality gate --> vunarlablites & code smells & bugs 
+th quality profile we impld , becz dvlprs will be do that , we just create the existing parent rules & apply on surc code 
+
+ Maven 
+============================================================================================================================
+lifcycle ( 7- validte, cmpli, test ,build(war.ear), package , install, deploy(store in  nexus repo) 
+mvn clean install --> stored in m2 dir (i.e build file store in local repostry)
+mvn clean --> goes & delt preious build 
+mvn deploy--> code build will move to artfctry store (jfrog,nexus,dockr) 
+pom (project object model- works on dependcines)
+if you want to chnge default .m2 path?
+in conf folder setting.xml in that local repo tag 
+
+goal in maven ?
+one task in maven, it ask for goals like clean
+we have 3 phases default,site,
+
+
+Jenkins(HUDSON)   /GITLab,Bamboo,TeamCity,...
+=============================================================================================================================
+~what is jenkns?
+jnkins is an open-source free automation tool used to build and test software projects
+to keep track of the version control system and initiate and monitor a build system 
+usd to detect defects in the SDLC
+use it to continuously monitor the code in real-time and integrate changes into the build
+
+stages-> SCM-build-sonrqubr(quality of code)-build(create  dockr-imge)-push-(push dockr img to ecr)- deploy(continer to EKS)
+ 
+
+~what is CI? CD? CD?
+before it was WaterFalmodel? there is no ci/cTesting/cd
+agile--->
+ *CI is a process whr dvplrs freqently mrg ther code cng in shrd repo & there is automted build & testing 
+ *CDelvry--extention of cuntiousintegrtion wher will mimic few tings before deploymnt, like run current projct on a fixd servr test prfrmc ,
+         aftr manual test only it wil be apprvd to prdction lvl deploymnt
+	  (CD) refers to the building, testing, and delivering improvements to the software code
+*CDplymt--is prcs wher it validts code cngs ar stable,using automtd tst& deply tp prductn without explict apprvl 
+
+
+*what is CI? (SCM_Checkout,compile, testing, build, ststic_code_anlysis, push_into_artifct_repo, email_notiftion)
+
+Jenkins log path?
+/var/log/jenkins/jenkins.log
+
+
+*types of jobs are? 
+ freestyle, mvn, pipeline, multi_config_projct, multi_brnch_pipline
+
+*what is multi-brnc pipline?& hw we use it ?
+ enables u to impmlnt diffnt jenkins files frm diff brnchs of the same projct
+ in multi-brnch pipline, jenkins atumatcily fetchs& discovers manges excutes piplins for brnches (filename-Jenkis_file in SCM)
+ avalible in new-item-->crete_new_job--->Multi_brnch_pipline-->git_repo_acess(here it have Jenkins_file)
+
+*Scrpted pipline& Declartivepipln(new)?
+ scpit-->groovy based
+ decltive--> 
+
+*How many plugins u use ?
+ 3 plugins- artifctry ,GIT(PULL,HOOK), Sonrqube
+
+*Jenkisn job DSL(Domain Specific Language.)?
+ When the number of jobs grows, maintaining becomes difficult and a lot of work.
+ Jenkins job DSL plugin was designed to make it easier to manage jobs
+
+
+*how do u do jenkns backup in servr level ?
+ setting,artifcts,archivs,build logs ar stord in jnks home_dir
+ .jenkins in home dir path 
+ jenkins bckup_plugin to do 
+
+why CLI In Jenkins?
+
+
+What is a Jenkins file?
+A Jenkinsfile is a text file that contains the definition of a Jenkins Pipeline and is checked into source control
+You can create pipelines automatically for all branches and execute pull requests with just one JenkinsFile
+
+
+*create users+mange+assign roles?
+ crete_user --->  /Manage_jenkins/Manage_users
+ mange_usr  --->  on right top at user_name^ select to config in that u can create paswd,API Token,SSH-key Pub_key,
+ roles --->   /Manage_jenkins/Manage_Plugins/search for Role_based_strategy plugin
+             Jenins/Configure_Global_secrity/in authoriztion_tab ---->selct role basd_stratgy
+	     /Manage_jenkins/Manage and assign_roles/Manges_role---->here we can give in global role,slave role...etc by giving view,scm,job,run
+*restart jenkins server?
+ sudo /etc/init.d/jenkins restart
+ Manually --> (jenkins_url)/safeRestart
+
+post block?
+is run at end of the pipline excution we cn prfm svrl task like fanilize machin , notifiction 
+
+*where do u deploy snrqube ----> its in AWS we will deploy 
+ compnts & reqirmnts for sonarqube Config ------->host sonqrqbe servr IP adres->point outto nginx gateway  (that ip adress used in git plugin by directly linking it)
+ parmetes to pass for sonrqube in jenkins?
+
+*add users in jenkins?
+ plugins used in jenkins?
+ jenkins CLI?
+
+
+
+Global-Creditals in jenkins?
+for app cominction ,we need to provide crediitls(usrname,paswd)
+jenins-->mange_jenkisn-->mange_credintls & configure crdtls exmpl(tmct-->)
+
+override?
+its not recomnded to over_ride for envirmnt_vairbles?
+
+stages in pipeline?
+SCM & build, Sonar(to check qulityof_Scm), creting build stage of docker build stge
+Push (push dck img to ecr), deploy(deploy continer to EKS infra)
+
+for java unit test..?
+
+git plugin used 2 things 
+link to jenkins by remote trigger option  (specify ur jenkisn ip_adress folwd by api_tokn 
+
+Artifctry-plugin?
+we keep tht in pom file 
+
+config mastr& slave .?
+
+how job is trigger when commit happns?
+*creating job in pollscm evry 1mint mentined jenkins keep on chks wheather updtes in gitub/not get builds 
+*in Git hooks & services --> giving url of jenkins (authentication we ned to give ->personal access token/SSH keygen of publik key & put it in github near sshkeys)
+
+Deploymnt staratgy:-
+
+pipeline:- maven pipline is used to genrate only for maven projcts 
+    new :- Jenkins file -groovy script - checkout code,build,sonarqube,stages.....
+	   store in repo like in project root directry 
+
+* Upstream & downstream?
+
+*how many ways to shedule a job 
+ poll scm , hooks&services , Scheduler
+
+*migrate jenkins 1 server to other server?
+ A(old) & B(new) Linux server 
+ install jenkins on B & stop jenkins server 
+ go to A server & go to home dir in that .jenkins folder( which includ config) copy that to B and restart jenkins in B
+
+
+SAMPLE-PIPELINE
+================
+
+pipeline {
+    agent any
+    environment {
+        PATH= "/opt/apache-maven-3.8.5/bin:$PATH" 
+    }
+
+    stages {
+        stage('git') {
+            steps {
+                git branch: 'main', credentialsId: '3ba4fdaf-625a-4085-ad61-e7cdf3591bd4', url: 'https://github.com/GITHUBSURYA-MJ/RE.git'
+            }
+        }
+        
+        stage('build with maven') {
+            steps {
+                
+                sh'mvn package'
+  }}}}
+
+Tomcat
+==========================================================================================================================================
+
+deployed into tmct servr sucesfuly but binry issues(how to overcome binary issue)?
+logs for tomcat server  /var/log/tomcat.
+
+how u deploy app to tmct ?
+pushed war file to webapp folder(/bin/webapp),then 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+###########################################################################################################################################################
+
+in tmct for creditals  manger-gui & scpit-gui we hve get to adim privlage for tmct, then we can login t tmct_hm page  & deploy webapps folder
+deploy tmct into ec2 , befoer th LB-->Route53(DNS)-->cntrl will be it the LB --->ec2auto scaling (inec2-->TMCT-->WEbapps_foldr(APPLIction))
+in ec2-auto scaling ,
+
+Route53(DNS)-->LB-->ELB(IP-adress)-->(acess to ec2-auto-scaling)--(in ec2--->tomcat(WEbapps_foldr(APPLIction)))
+				nodes(ec2-) --> evry node we have pods(services/appliction) if its a kuberts applction
+
+Linux
+=====================================
+/etc/host/  
+
+nfs switch?
+Jail concepts?
+In Multiple file system diff  ext2 & ext3
+what is inode
+
+awk & SED
+Sed is a strem editr in prticular file ,if u wnt to chng any particulr word 
+sed -s-red/
+
+SCP
+copy files from 1 to other host
+Secure copy SCP using winSCP /
+scp [OPTION] [user@]SRC_HOST:]file1 [user@]DEST_HOST:]file2
+
+find ending with .log ?
+find -type f "*.log"
+find exec & del --->to del all files 
+ps -ef ----> to see process id 
+what is deamon process? 
+baground process for any service in linux /etc/initd exmple-->httpd,crond (its a parent service)
+
+bas RC in shell why u use ? --> 
+its config file, for every user what kind of cutomiztion we have , we specify thre in users home dir /home/.bashrc
+any user can create alias WMI=who iam 
+
+hard link vs soft link? (
+hrd link is cp of file (if parnt file is del , no prblm) inode no is same for parnt& child 
+sft link is making shrt_cut (if parnt file is del , child is also deltd) inode no is diff for parnt&child
+
+NameSpace?
+are like rapping system resource like RAM,CPUs, for the prcossors,
+1 process in 1 nameSpace is aloctd to som givn ram &cpu  will be alloctd to process in 1NameSpae
+
+initd(old) & systemd(new)?
+ps -ef --->the pid =1 it is the initd /Sytemd
+in linux 7 & above the default prnt process is Sydtmd.
+
+
+ps -ef | grep "tomcat"  ---> only process name wit tmcat in no.of process 
+kill -f pid -9is signal to killing  a job 
+tee --> used to ?
+LVM --> to create the disk partition 
+UMASK--> to set the default permision for file/dirctry 
+can we turn linux into proxy 
+diff btw hme dir and wrking dir--> home is nothing but one user u1  home dir will be /home/u1/, wkring dir is prsnt where it is 
+
+
+
+Ansible:- (config_mangmnt_tool)
+=============
+*architect is idem potent ,push based-mechanism, Agent-less
+*pre-requsite is python only on master side
+*(2virtual_CPU, 4GBRam, 30Gb Hardsisk) on aws  
+*ssh connection btw mstr--> slave (passwd-less-Authentiction) --->ssh -keygen (id_rs.pub,..) copy into slve side as Authorized_keys
+ssh 
+
+we used to deployment purpose & upgrading,infrastucture provisiong,config mangmnt cd,appliction deploymnt) automate the appliction lifcycle frm devlpmnt to prd
+we are mainting 5-6 servers , to updte one softwre we use ansible master-slave paswd less mechanism 
+two ways for configring & upgrading by writing yaml file
+ansible-jenkins
+in jenkins file we writing once build is done from workspce we will using copy_module under webapp
+
+check particluar pckg is instlled /not?
+ansible all -m shell -a "pckge_name --version" 
+
+diff btw pckg & shell module?
+shell module is idem-potent,
+pkg mod is wrks on all linux distubutions
+
+Ansible tasks?
+action which we prfm on host machin by using moduels
+
+handlers?
+is a special task, if 1 task has notify the handlr ,if task is modify then only it will be excuted 
+hanlrs will be excuted end of playbook
+
+exmpl: in tmct, if u want to start it ,  if ther chng in webapp foldr it taht case we use hndlers
+
+install particular pkg ?
+use shell,pkg,apt,yum module for ubuntu/ diff 
+name= state= 
+
+Ansible arcitecut?
+moudles,host_invntry,plugins,playbooks,score_modules..
+
+
+*whater config reqid on slave node we written as playbok in master node
+ansible-playbook pb1.yaml --become --K
+		          --syntax -check
+
+* host file path /etc/ansible/
+  inventory nothing but host file
+*Ansible vault
+
+
+Shell-Script
+------------------
+$$-process id  ,$#- how many argumnts givn in shel script
+$*-all argumnts given 
+
+to print 1 to 10 nmbrs
+echo" to print 1 to 10 "
+for ((int=1; i<=10; i++))
+do 
+echo $i
+done
+
+
+pipeline{
+stages
+{
+stage('get the cod frm scm')
+{
+ }
+}}
+
+nodes
+{
+stage{}
+.
+.
+stage{}
+
+}
+
+
+
+soft vs hard link
+sft link is like creating shtcut for file (if we del prnt file , we wnt hve soft data)  
+hrd link is cpy file frm 1 loction to othr (similar inode) if we del also hrd link cpy
+
+
+
+
+Apache
+=======
+on a single machine can i maintain 2 version of apche web servr?
+no bcz it runs on port 80 ,so u canot run on multiple instace
+
+what type of security u provide for website on apche tmct ?
+we can create self-signed certificates & install certifct in that http server
+& by enabling http sssl modules in http server.http config file and give certifction path 
+insted of url http that it will bcm https secure and access securly 
+
+how u deploy war file on apache ?
+no it can't be, bcz it is static content(only html,cssjava_script can be), so if u want deply u can use tmct/ any wildfy archivers(i.e JBoss) 
+
+
+Docker
+=================================================================================================================================================
+what is continer in docker?
+we shuld crete image (crete Dockerfile) frm that we can create continer 
+
+Docker deamon
+its a parent operation whnvr we giv cmnds docker stop,run,exec -->it goes to demon and does the job (its like parnt process)
+
+build contxt in docker?
+provding path to create dockr images out of a docker_file
+
+list all failed continer / debug?
+docker ps -aq stats=existed 
+
+Docker vs Hypervisor?
+Virtualbox is nothing but hypervisor, on top of host_os u can install hypervisior on top hprvisor u can install virtalbox like centos,ubuntu..
+
+centos|untu|
+_______________
+Hypervisior (32gb ram,..)
+_______________
+Host_os
+
+To see logs of continer
+docker logs CID 
+
+how to get public ip of continer?
+Kit inspect
+
+how do increse dcker volume?
+/etc/congi/docker_storge/
+here in that templte  we need to provide values for regex & try to incres volume 
+
+what is docker compose?
+
+Ansible (used for appliction deploymnt,i
+========
+
+
+
+
+AWS
+================================================================================================================================================
+EC2-elastic_cloud_cmputing:
+
+Load BALANCE:-appliction Lb ->target grup-->
+
+what is Auto scaling_grup? (high avalbilty, reduce incom trafic & depend on load) desired ,actual ,max
+does a ASG of ec2-instance ,if we specific metics Cpu_utilzion is 70 , when threshold poit hits, it causes next ec2-intsnce
+with same AMI configd same EC-2 will pop-up
+
+config &  componts in ASG
+we specify vm min& max of ec2-get pop_up,  
+Launch_config & Launch_Template--->in thr we specify all bootscrap script what kind of AMI 
+
+types of ASG?
+
+VPC? (public & private subnets)
+IGW-->VPC --->prvt-subnts(no intrnt_convectivty)
+	      publc-sunt(with intnt_contivty)
+
+route tables(routing jobs) -----> 
+CIDR--> 16-28 Ip's range
+vpc peering to A to B vpc connections(internal comuniction)
+
+in single projct how may vpc's  u hav?
+1 Accunt--> 5 vpc of Ec2-instnc (default)
+
+diff btw public & privt IP?
+Privte isolated one through NAT gate way only we can have privte acess
+public is like any one acess
+
+diff btw NAT gatway & internet gatway?
+intnt sits before th VPC
+NAT is subnt levl thing (privte-subnet will cont to nat gatway)
+
+Route table ---> routing traffic to diff  
+
+
+S3:
+to store the large volumes for uplaoding imge in bucket 
+
+Load balncer:
+appLB
+
+Iam profile:
+pre-requsites: we have to seewht kind acess( programctic access/console)
+        in progrmatic also 
+
+how u login to privte EC2-instance? How can u acess frm outside?
+bash&host avilbe in public subnet ,in that we have host called  bash& host ,there we login to b&h ,from ther some securtiy config will be done thrugh/frm the privte subntes 
+
+ACL&NACL(Actual contol list& netwk_access cntl list)
+NACL:- act as firewal for subnets level,so when we create VPC&Subnet,default nacl will created,it allows trafiic&denay, we can allow/deny particular ip  by using nacl
+	by using denay section we can blck ips 
+Security grup is a firewal agnist the EC2-level , here we can allow(myip,custmip,allip) wht type of range/ports can let ion from outside, we cnot dney abut prticulr ip
+
+*Record_set:- is acompnt of hosted zones,its like bunch of recrds dns subnts,list of subdomains in hosted zone
+*elastic bean stack:-?
+SQS:- quey system,       
+
+
+
+diff btw LoadBalncr & headless service
+
+
+
+
+
+
+
+
